@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="webapp-cookies-matu">
+    <output-path>$PROJECT_DIR$/out/artifacts/webapp_cookies_matu</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="webapp-cookies-matu" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="webapp-cookies-matu/web/Web" />
+    </root>
+  </artifact>
+</component>
