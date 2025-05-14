@@ -11,7 +11,7 @@
 <div>
     <form action="/webapp_cookies_matu/login" method="post">
         <div>
-            <lable for="username">Nombre de usuario:</lable>
+            <lable for="username">Nombre de usuarios:</lable>
             <div>
                 <input type="text" name="username" id="username">
             </div>
