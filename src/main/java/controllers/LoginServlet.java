@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 //path o anotación
-@WebServlet("/login")
+@WebServlet({"/login","/login.html"})
 public class LoginServlet extends HttpServlet {
     final static String USERNAME = "admin";
     final static String PASSWORD = "12345";
@@ -40,9 +40,12 @@ public class LoginServlet extends HttpServlet {
                 out.println("</head>");
                 out.println("<body>");
                 out.println("<h1>Hola "+cookieOptional.get()+" ya iniciaste sesión anteriormente!</h1>");
+                out.println("<p><a href='"+req.getContextPath()+"/index.html'>Volver al inicio</a></p>");
                 out.println("</body>");
                 out.println("</html>");
             }
+        }else{
+            getServletContext().getRequestDispatcher("/login.jsp").forward(req,resp);
         }
     }
 
@@ -67,7 +70,9 @@ public class LoginServlet extends HttpServlet {
                 out.println("<h1>Bienvenido a mi APP</h1>");
                 out.println("</body>");
                 out.println("</html>");
+
             }
+            resp.sendRedirect(req.getContextPath()+"/login.html");
         } else {
             resp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Lo sentimos no tiene acceso");
         }
