@@ -6,6 +6,8 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import services.LoginService;
+import services.LoginServiceImplement;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,14 +22,18 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Cookie[] cookies = req.getCookies() != null ? req.getCookies() : new Cookie[0];
+        //Creamos la nuevo
+      /*  Cookie[] cookies = req.getCookies() != null ? req.getCookies() : new Cookie[0];
         //busco en  el arreglo de cookie si existe la cookie
         //solicitada y la convierto en String
         Optional<String> cookieOptional = Arrays.stream(cookies)
                 .filter(c -> "username".equals(c.getName()))
                 //convertimos a string el valor encontrado
                 .map(Cookie::getValue)
-                .findAny();
+                .findAny();*/
+        //Creamos el nuevo objeto de la Cookie
+        LoginService auth= new LoginServiceImplement();
+        Optional<String> cookieOptional=auth.getUserName(req);
         if (cookieOptional.isPresent()) {
             resp.setContentType("text/html;charset=UTF-8");
             try(PrintWriter out = resp.getWriter()) {
