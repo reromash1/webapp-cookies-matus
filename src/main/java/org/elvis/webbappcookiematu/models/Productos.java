@@ -1,4 +1,4 @@
-package models;
+package org.elvis.webbappcookiematu.models;
 
 public class Productos {
     //declaramos las variables para crear el objeto producto

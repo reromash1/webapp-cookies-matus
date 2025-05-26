@@ -1,6 +1,6 @@
-package services;
+package org.elvis.webbappcookiematu.services;
 
-import models.Productos;
+import org.elvis.webbappcookiematu.models.Productos;
 
 import java.util.Arrays;
 import java.util.List;

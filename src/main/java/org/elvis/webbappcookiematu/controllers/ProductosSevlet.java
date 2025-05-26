@@ -1,13 +1,13 @@
-package controllers;
+package org.elvis.webbappcookiematu.controllers;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.Productos;
-import services.ProductoService;
-import services.ProductoServiceImplement;
+import org.elvis.webbappcookiematu.models.Productos;
+import org.elvis.webbappcookiematu.services.ProductoService;
+import org.elvis.webbappcookiematu.services.ProductoServiceImplement;
 
 import java.io.IOException;
 import java.io.PrintWriter;
