@@ -4,14 +4,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConexionBaseDatos {
-    //declaramos e inicializamos las variables de conexión
-    private static String url="jdbc:mysql://localhost:3306/compraventa?serverTimezone=UTC";
-    private static String username="root";
-    private static String password="";
+public class Conexion {
 
-    //Implementamos un método de tipo Connection
+    //Inicializo 3 variables globales
+    private static String url="jdbc:mysql://localhost:3306/compraventa?serverTimezone=UTC";
+    //nombre del usuario de la BBDD
+    private static String username="root";
+    //contraseña de la base de datos
+    private static String password="";
+    //implementamos un método para realizar la conexión
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(url,username,password);
+        return DriverManager.getConnection(url, username, password);
     }
 }
