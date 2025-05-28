@@ -1,31 +1,31 @@
 package org.elvis.webbappcookiematu.models;
 
-public class Categorias {
-    //Encanpsular todos los parametros de objeto
-    private int idCategoria;
+public class Categoria {
+    //Implementar e inicializar las variables de objeto
+    //enacapsulados
+    private Long idCategoria;
     private String nombre;
     private String descripcion;
     private int condicion;
 
-    //Implementar un constructor vacio
-    public Categorias(){
+    public Categoria() {
 
     }
-    //Inicializamos un constructor con los parámetros del objeto
-    public Categorias(int idCatgoria, String nombre, String descripcion, int condicion){
-        this.idCategoria = idCatgoria;
+
+    public Categoria(Long idCategoria, String nombre, String descripcion, int condicion) {
+        this.idCategoria = idCategoria;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.condicion = condicion;
     }
-    //implementamos los método get and set
+    //Implemmentamos los método get and set
 
 
-    public int getIdCategoria() {
+    public Long getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(int idCategoria) {
+    public void setIdCategoria(Long idCategoria) {
         this.idCategoria = idCategoria;
     }
 

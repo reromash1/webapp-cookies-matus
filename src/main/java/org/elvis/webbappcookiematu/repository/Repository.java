@@ -3,14 +3,13 @@ package org.elvis.webbappcookiematu.repository;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface Repository<T>{
+/*
+* <T> Es un parámetro generico que permite que la interfaz sea utilizada
+* como se desee o cualquieo tipo de objeto(entidad) que se desee manejar*/
+public interface Repository <T>{
 
-    //Implemtemos los métodos para el crud a la base de datos
     List<T> listar() throws SQLException;
-    //Implementamos el método por id
-    T porId(int id)throws SQLException;
-    //implementamos un método para guardar
+    T porId(Long id) throws SQLException;
     void guardar(T t) throws SQLException;
-    //implementamos el método eliminar
-    void eliminar(int id) throws SQLException;
+    void eliminar(Long id) throws SQLException;
 }
