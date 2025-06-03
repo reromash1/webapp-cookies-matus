@@ -22,7 +22,7 @@
         <div>
             <label for="nombre">Ingrese el nombre de categoria</label>
             <div>
-                <input type="text" name="id" value="<%=categorias.getIdCategoria()%>">
+                <input type="hidden" name="id" value="<%=categorias.getIdCategoria()%>">
                 <input type="text" id="nombre" name="nombre" value="<%=categorias.getNombre() != null ? categorias.getNombre():""%>">
             </div>
         </div>
