@@ -36,7 +36,10 @@ public class CategoriaRepositoryJdbcImplemt implements Repository<Categoria> {
                 "select * from categoria where idcategoria=?")) {
             stmt.setLong(1, id); //1 ,2, 3 ,4
             try(ResultSet rs = stmt.executeQuery()){
-                categoria=getCategoria(rs);
+                if (rs.next()){
+                    categoria=getCategoria(rs);
+                }
+
             }
 
         }
@@ -52,12 +55,13 @@ public class CategoriaRepositoryJdbcImplemt implements Repository<Categoria> {
         if (categoria.getIdCategoria() != null && categoria.getIdCategoria()>0){
             sql = "update categoria set nombre=?, descripcion=? Where idcategoria=?";
         }else{
-            sql="insert into categoria(nombre, descripcion, estado)VALUES(?,?,1)";
+            sql="insert into categoria(nombre, descripcion, condicion)VALUES(?,?,1)";
         }
         try(PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, categoria.getNombre());
             stmt.setString(2, categoria.getDescripcion());
-            stmt.setInt(3, categoria.getCondicion());
+            stmt.setLong(3, categoria.getIdCategoria());
+            //stmt.setInt(3, categoria.getCondicion());
             stmt.executeUpdate();
         }
 

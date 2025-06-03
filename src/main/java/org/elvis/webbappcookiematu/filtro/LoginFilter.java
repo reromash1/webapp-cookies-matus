@@ -9,7 +9,7 @@ import org.elvis.webbappcookiematu.services.LoginServiceSessionImplement;
 
 import java.io.IOException;
 import java.util.Optional;
-@WebFilter({"/productos","/agregar-carro"})
+@WebFilter({"/productos","/agregar-carro","/categoria"})
 public class LoginFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

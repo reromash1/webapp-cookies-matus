@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Optional;
 
+
 @WebServlet("/categoria")
 public class CategoriaServlet extends HttpServlet {
     @Override

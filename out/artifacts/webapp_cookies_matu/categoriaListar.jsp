@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: ADMIN-ITQ
   Date: 28/5/2025
-  Time: 12:11
+  Time: 20:19
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"
@@ -18,25 +18,37 @@
 <body>
 
 <h1>Listado Categoria</h1>
+<%
+    if (username.isPresent()) {%>
+<div style="color: blue;">Hola, <%=username.get()%> bienvenido</div>
+<div><a href="${pageContext.request.contextPath}/categoria/form">Añadir Categorias</a></div>
+
+<%}%>
+
 <table>
     <thead>
-    <th>Id Categoria</th>
-    <th>Nombre</th>
-    <th> Descipción</th>
-    <th>Condición</th>
-    <th>Acciones</th>
+    <th>ID CATEGORIA</th>
+    <th>NOMBRE</th>
+    <th>DESCRIPCIÓN</th>
+    <th>CONDICIÓN</th>
+    <th>ACCIÓN</th>
     </thead>
     <%
-        for (Categoria cat : categorias) {%>
+        for (Categoria cate : categorias) {%>
     <tbody>
-    <td><%= cat.getIdCategoria()%></td>
-    <td><%= cat.getNombre()%></td>
-    <td><%= cat.getDescripcion()%></td>
-    <td><%= cat.getCondicion()%></td>
-    <td><a href="">Editar</a></td>
-    <td><a href="">Activar o Desactivar</a></td>
+    <td><%=cate.getIdCategoria()%></td>
+    <td><%=cate.getNombre()%></td>
+    <td><%=cate.getDescripcion()%></td>
+    <td><%=cate.getCondicion()%></td>
+    <%if(username.isPresent()){%>
+    <td>
+        <a href="<%=request.getContextPath()%>/categoria/form?id=<%=cate.getIdCategoria()%>">Editar</a>
+        <a href="">Eliminar</a>
+    </td>
+    <%}%>
     </tbody>
-    <% } %>
+
+    <% }%>
 
 </table>
 
