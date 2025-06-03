@@ -12,6 +12,8 @@ import org.elvis.webbappcookiematu.services.CategoriaServiceJbdcImplement;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.Optional;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/categoria/form")
 public class CategoriaFormControlador extends HttpServlet {
@@ -22,6 +24,7 @@ public class CategoriaFormControlador extends HttpServlet {
         CategoriaService service=new CategoriaServiceJbdcImplement(conn);
         long id;
         //validamos el campo ingresado
+
         try{
             id=Long.parseLong(req.getParameter("id"));
         }catch (NumberFormatException e){
@@ -60,6 +63,24 @@ public class CategoriaFormControlador extends HttpServlet {
         categorias.setIdCategoria(id);
         categorias.setNombre(nombre);
         categorias.setDescripcion(descripcion);
+
+        // Mapa para errores
+        Map<String, String> errores = new HashMap<>();
+
+        if (nombre == null || nombre.trim().isEmpty()) {
+            errores.put("nombre", "El nombre es obligatorio.");
+        }
+
+        if (descripcion == null || descripcion.trim().isEmpty()) {
+            errores.put("descripcion", "La descripción es obligatoria.");
+        }
+
+        if (!errores.isEmpty()) {
+            req.setAttribute("errores", errores);
+            req.setAttribute("categorias", categorias);
+            getServletContext().getRequestDispatcher("/formularioCategoria.jsp").forward(req, resp);
+            return;
+        }
 
         service.guardar(categorias);
         resp.sendRedirect(req.getContextPath()+"/categoria");
