@@ -1,6 +1,6 @@
 package org.elvis.webbappcookiematu.repository;
 
-import org.maiccol.models.Productos;
+import org.elvis.webbappcookiematu.models.Productos;
 
 import java.sql.*;
 import java.util.ArrayList;

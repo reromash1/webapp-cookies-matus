@@ -7,48 +7,40 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.elvis.webbappcookiematu.models.Productos;
 import org.elvis.webbappcookiematu.services.ProductoService;
-import org.elvis.webbappcookiematu.services.ProductoServiceImplement;
+import org.elvis.webbappcookiematu.services.ProductoServiceJdbcImplement;
+import org.elvis.webbappcookiematu.services.LoginService;
+import org.elvis.webbappcookiematu.services.LoginServiceSessionImplement;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.util.List;
+import java.util.Optional;
+
 //Anotaciones
-@WebServlet("/productos")
+@WebServlet ("/productos")
 public class ProductosSevlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductoService service = new ProductoServiceImplement();
+        // 1. Obtener la conexión
+        Connection conn = (Connection) req.getAttribute("conn");
+
+        // 2. Crear el servicio de productos
+        ProductoService service = new ProductoServiceJdbcImplement(conn);
+
+        // 3. Obtener la lista de productos
         List<Productos> productos = service.listar();
 
-        resp.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = resp.getWriter();
-        //Creo la plantilla html
-        out.print("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<meta charset=\"utf-8\">");
-        out.println("<title>Listar Producto</title>");
-        out.println("</head>");
-        out.println("<body>");
-        out.println("<h1>Listar producto</h1>");
-        out.println("<table>");
-        out.println("<tr>");
-        out.println("<th>ID PRODUCTO</th>");
-        out.println("<th>NOMBRE</th>");
-        out.println("<th>CATEGORIA</th>");
-        out.println("<th>PRECIO</th>");
-        out.println("</tr>");
-        productos.forEach(p->{
-            out.println("<tr>");
-            out.println("<td>"+p.getIdProducto()+"</td>");
-            out.println("<td>"+p.getNombreProducto()+"</td>");
-            out.println("<td>"+p.getCategoria()+"</td>");
-            out.println("<td>"+p.getPrecioProducto()+"</td>");
-            out.println("</tr>");
+        // 4. Obtener el nombre de usuario autenticado
+        LoginService auth = new LoginServiceSessionImplement();
+        Optional<String> userName = auth.getUserName(req);
 
-        });
-        out.println("</table>");
-        out.println("</body>");
-        out.println("</html>");
+        // 5. Setear atributos en el request
+        req.setAttribute("productos", productos);
+        req.setAttribute("username", userName);
+
+        // 6. Redireccionar a la vista JSP
+        getServletContext().getRequestDispatcher("/productoListar.jsp").forward(req, resp);
     }
 }

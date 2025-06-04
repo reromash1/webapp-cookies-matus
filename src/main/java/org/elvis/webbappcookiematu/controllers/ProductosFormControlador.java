@@ -5,11 +5,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.maiccol.models.Productos;
-import org.maiccol.services.CategoriaService;
-import org.maiccol.services.CategoriaServiceJbdcImplement;
-import org.maiccol.services.ProductoService;
-import org.maiccol.services.ProductoServiceJdbcImplement;
+import org.elvis.webbappcookiematu.models.Productos;
+import org.elvis.webbappcookiematu.services.CategoriaService;
+import org.elvis.webbappcookiematu.services.CategoriaServiceJbdcImplement;
+import org.elvis.webbappcookiematu.services.ProductoService;
+import org.elvis.webbappcookiematu.services.ProductoServiceJdbcImplement;
+
 
 import java.io.IOException;
 import java.sql.Connection;
